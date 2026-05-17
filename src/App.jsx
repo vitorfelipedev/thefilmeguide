@@ -4,16 +4,23 @@ import Search from './pages/Search';
 import MovieDetails from './pages/MovieDetails';
 import SerieDetails from './pages/SerieDetails';
 import NotFound from './pages/NotFound';
+import LayoutRoute from './LayoutRoute';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <LayoutRoute />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      { path: 'search', element: <Search /> },
+      { path: 'movie/:id', element: <MovieDetails /> },
+      { path: 'serie/:id', element: <SerieDetails /> },
+      { path: '*', element: <NotFound /> },
+    ],
   },
-  { path: '/search', element: <Search /> },
-  { path: '/movie/:id', element: <MovieDetails /> },
-  { path: '/serie/:id', element: <SerieDetails /> },
-  { path: '*', element: <NotFound /> },
 ]);
 
 const App = () => {
