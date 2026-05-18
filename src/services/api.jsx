@@ -1,5 +1,4 @@
 import axios from 'axios';
-import.meta.env.VITE_TMDB_KEY;
 
 const api = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
@@ -41,9 +40,17 @@ export function SERIE_TRAILER_GET(id) {
 }
 
 export function MOVIE_CREDITS_GET(id) {
-  return api.get(`movie/${id}/credits`);
+  return api.get(`/movie/${id}/credits`);
 }
 
 export function SERIE_CREDITS_GET(id) {
-  return api.get(`tv/${id}/credits`);
+  return api.get(`/tv/${id}/credits`);
+}
+
+export function MOVIE_GENRES_GET() {
+  return api.get('/genre/movie/list');
+}
+
+export function TV_GENRES_GET() {
+  return api.get('/genre/tv/list');
 }
