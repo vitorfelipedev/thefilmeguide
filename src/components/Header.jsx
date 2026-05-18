@@ -28,6 +28,7 @@ const Header = () => {
           name="movieTvSearch"
           id="movieTvSearch"
           value={search}
+          placeholder="Search movies or TV shows..."
           onChange={handleChange}
         />
         <button type="submit" aria-label="Search">

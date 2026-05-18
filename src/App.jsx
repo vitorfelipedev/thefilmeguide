@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Search from './pages/Search';
-import MovieDetails from './pages/TvDetails';
+import MovieDetails from './pages/MovieDetails';
 import TvDetails from './pages/TvDetails';
 import NotFound from './pages/NotFound';
 import LayoutRoute from './LayoutRoute';
