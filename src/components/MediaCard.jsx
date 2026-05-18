@@ -5,6 +5,9 @@ import noImage from '../assets/noImage.jpg';
 import { Link } from 'react-router-dom';
 const MediaCard = ({ media, genres }) => {
   const title = media.title || media.name;
+  const year =
+    new Date(media.release_date).getFullYear() ||
+    new Date(media.first_air_date).getFullYear();
   return (
     <Link to={`/${media.media_type}/${media.id}`} className={styles.card}>
       <div className={styles.image}>
@@ -29,7 +32,9 @@ const MediaCard = ({ media, genres }) => {
           </span>
         ))}
       </div>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={styles.title}>
+        {title} ({year})
+      </h2>
       <p className={styles.rating}>
         Public Assessment: <Star className={styles.star} />
         <span>{Number(media.vote_average).toFixed(2)}</span>
