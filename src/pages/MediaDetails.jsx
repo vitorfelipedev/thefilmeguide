@@ -24,6 +24,8 @@ const MediaDetails = ({ type }) => {
   const [details, setDetails] = React.useState(null);
   const [trailer, setTrailer] = React.useState([]);
   const [credits, setCredits] = React.useState(null);
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+  const [bannerLoaded, setBannerLoaded] = React.useState(false);
   React.useEffect(() => {
     async function fetchData() {
       const isMovie = type === 'movie';
@@ -107,16 +109,31 @@ const MediaDetails = ({ type }) => {
         }
       />
       <div className={styles.banner}>
+        {!bannerLoaded && (
+          <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
+            <Skeleton type="banner" />
+          </div>
+        )}
         {details.backdrop_path && (
           <img
             src={`https://image.tmdb.org/t/p/original${details.backdrop_path}`}
             alt={title}
+            onLoad={() => setBannerLoaded(true)}
+            style={{ 
+              opacity: bannerLoaded ? 1 : 0, 
+              transition: 'opacity 0.8s ease-in-out' 
+            }}
           />
         )}
         <div className={styles.overlay} />
       </div>
       <div className={styles.content}>
         <div className={styles.poster}>
+          {!imageLoaded && (
+            <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+              <Skeleton type="card" />
+            </div>
+          )}
           <img
             src={
               details.poster_path
@@ -124,6 +141,8 @@ const MediaDetails = ({ type }) => {
                 : noImage
             }
             alt={title}
+            onLoad={() => setImageLoaded(true)}
+            style={{ opacity: imageLoaded ? 1 : 0 }}
           />
         </div>
         <div className={styles.info}>

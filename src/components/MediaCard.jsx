@@ -1,9 +1,13 @@
+import { useState } from 'react';
+import Skeleton from './Skeleton';
 import styles from './MediaCard.module.css';
 import Star from '../assets/star.svg?react';
 import View from '../assets/view.svg?react';
 import noImage from '../assets/noImage.jpg';
 import { Link } from 'react-router-dom';
+
 const MediaCard = ({ media, genres }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
   const title = media.title || media.name;
   const year =
     new Date(media.release_date).getFullYear() ||
@@ -11,6 +15,11 @@ const MediaCard = ({ media, genres }) => {
   return (
     <Link to={`/${media.media_type}/${media.id}`} className={styles.card}>
       <div className={styles.image}>
+        {!imageLoaded && (
+          <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+            <Skeleton type="card" />
+          </div>
+        )}
         <img
           src={
             media.poster_path
@@ -19,6 +28,8 @@ const MediaCard = ({ media, genres }) => {
           }
           alt={`Banner do filme ${title}`}
           loading="lazy"
+          onLoad={() => setImageLoaded(true)}
+          style={{ opacity: imageLoaded ? 1 : 0 }}
         />
         <span className={styles.overlay}>
           <View className={styles.viewIcon} />
