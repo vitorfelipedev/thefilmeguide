@@ -2,3 +2,13 @@
   display: grid;
   gap: 2rem;
 }
+
+.skeletonRow {
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.skeletonRow + .skeletonRow {
+  margin-top: 2rem;
+}

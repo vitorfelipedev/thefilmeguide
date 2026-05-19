@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import Skeleton from '../components/Skeleton';
 import useFetch from '../hooks/useFetch';
 import {
   MOVIE_DETAILS_GET,
@@ -46,13 +47,40 @@ const MovieDetails = ({ type }) => {
     }
     fetchData();
   }, [request, id, type]);
-  if (loading) {
-    return <p>Buscando resultados...</p>;
+  if (loading || !details) {
+    return (
+      <section className={`container ${styles.details}`}>
+        <div className={styles.banner}>
+          <Skeleton type="banner" />
+        </div>
+        <div className={styles.content}>
+          <div className={styles.poster}>
+            <Skeleton type="card" />
+          </div>
+          <div className={styles.info}>
+            <Skeleton type="title" />
+            <Skeleton type="text" />
+            <Skeleton type="text" />
+            <Skeleton type="text" />
+            <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem' }}>
+              <Skeleton type="tag" />
+              <Skeleton type="tag" />
+              <Skeleton type="tag" />
+            </div>
+            <Skeleton type="title" />
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              {[...Array(8)].map((_, index) => (
+                <Skeleton key={index} type="avatar" />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
   }
   if (error) {
     return <p>Erro ao buscar: {error}</p>;
   }
-  if (!details) return null;
 
   const title = details.title || details.name;
   const releaseDate = details.release_date || details.first_air_date;

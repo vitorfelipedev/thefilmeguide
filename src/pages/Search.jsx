@@ -5,6 +5,7 @@ import { GERAL_SEARCH_GET } from '../services/api';
 import MediaCard from '../components/MediaCard';
 import { GenresContext } from '../context/GenresContext';
 import styles from './Search.module.css';
+import MediaCardSkeleton from '../components/MediaCardSkeleton';
 
 const Search = () => {
   const [result, setResult] = React.useState([]);
@@ -34,8 +35,10 @@ const Search = () => {
         </h1>
       </header>
       {loading && (
-        <div className={styles.feedbackCard}>
-          <p>Buscando resultados...</p>
+        <div className={styles.grid}>
+          {[...Array(6)].map((_, index) => (
+            <MediaCardSkeleton key={index} />
+          ))}
         </div>
       )}
       {error && (

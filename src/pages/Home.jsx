@@ -4,6 +4,7 @@ import useFetch from '../hooks/useFetch';
 import { MOVIES_POPULAR_GET, SERIES_POPULAR_GET } from '../services/api';
 import { GenresContext } from '../context/GenresContext';
 import MediaSlide from '../components/MediaSlide';
+import MediaCardSkeleton from '../components/MediaCardSkeleton';
 
 const Home = () => {
   const { error, loading, request } = useFetch();
@@ -32,7 +33,22 @@ const Home = () => {
     fetchData();
   }, [request]);
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) {
+    return (
+      <section className={`container mainContainer ${styles.home}`}>
+        <div className={styles.skeletonRow}>
+          {[...Array(5)].map((_, index) => (
+            <MediaCardSkeleton key={index} />
+          ))}
+        </div>
+        <div className={styles.skeletonRow}>
+          {[...Array(5)].map((_, index) => (
+            <MediaCardSkeleton key={index} />
+          ))}
+        </div>
+      </section>
+    );
+  }
   if (error) return <p>{error}</p>;
 
   return (
