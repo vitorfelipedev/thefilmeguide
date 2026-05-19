@@ -6,6 +6,7 @@ import { GenresContext } from '../context/GenresContext';
 import MediaSlide from '../components/MediaSlide';
 import MediaCardSkeleton from '../components/MediaCardSkeleton';
 import Head from '../helper/Head';
+import ErrorFeedback from '../components/ErrorFeedback';
 
 const Home = () => {
   const { error, loading, request } = useFetch();
@@ -50,7 +51,12 @@ const Home = () => {
       </section>
     );
   }
-  if (error) return <p>{error}</p>;
+  if (error)
+    return (
+      <section className="container">
+        <ErrorFeedback error={error} />
+      </section>
+    );
 
   return (
     <section className={`container mainContainer ${styles.home}`}>

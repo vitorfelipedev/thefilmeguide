@@ -7,6 +7,7 @@ import { GenresContext } from '../context/GenresContext';
 import styles from './Search.module.css';
 import MediaCardSkeleton from '../components/MediaCardSkeleton';
 import Head from '../helper/Head';
+import ErrorFeedback from '../components/ErrorFeedback';
 
 const Search = () => {
   const [result, setResult] = React.useState([]);
@@ -19,7 +20,9 @@ const Search = () => {
     async function fetchData() {
       if (!query) return;
       const response = await request(GERAL_SEARCH_GET(query));
-      setResult(response.response.data.results);
+      if (response.response) {
+        setResult(response.response.data.results);
+      }
     }
     fetchData();
   }, [query, request]);
@@ -47,9 +50,9 @@ const Search = () => {
         </div>
       )}
       {error && (
-        <div className={styles.feedbackCard}>
-          <p>Erro ao buscar: {error}</p>
-        </div>
+        <section className="container">
+          <ErrorFeedback error={error} />
+        </section>
       )}
       {filteredResults.length === 0 && !loading && !error && (
         <div className={styles.feedbackCard}>

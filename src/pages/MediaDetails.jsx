@@ -16,8 +16,9 @@ import Time from '../assets/time.svg?react';
 import styles from './MovieDetails.module.css';
 import noImage from '../assets/noImage.jpg';
 import Head from '../helper/Head';
+import ErrorFeedback from '../components/ErrorFeedback';
 
-const MovieDetails = ({ type }) => {
+const MediaDetails = ({ type }) => {
   const { id } = useParams();
   const { error, loading, request } = useFetch();
   const [details, setDetails] = React.useState(null);
@@ -48,6 +49,13 @@ const MovieDetails = ({ type }) => {
     }
     fetchData();
   }, [request, id, type]);
+  if (error) {
+    return (
+      <section className="container">
+        <ErrorFeedback error={error} />
+      </section>
+    );
+  }
   if (loading || !details) {
     return (
       <section className={`container ${styles.details}`}>
@@ -78,9 +86,6 @@ const MovieDetails = ({ type }) => {
         </div>
       </section>
     );
-  }
-  if (error) {
-    return <p>Erro ao buscar: {error}</p>;
   }
 
   const title = details.title || details.name;
@@ -164,4 +169,4 @@ const MovieDetails = ({ type }) => {
   );
 };
 
-export default MovieDetails;
+export default MediaDetails;
