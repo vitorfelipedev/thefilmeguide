@@ -4,7 +4,7 @@ import Head from '../helper/Head';
 
 const NotFound = () => {
   return (
-    <section className={`container ${styles.notFound}`}>
+    <section className={`container animeLeft ${styles.notFound}`}>
       <Head title={'Page not found | The Movie Guide'} />
       <div className={styles.content}>
         <span className={styles.code}>404</span>

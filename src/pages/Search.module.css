@@ -11,16 +11,6 @@
   padding-bottom: 1rem;
 }
 
-.title {
-  font-size: 1.8rem;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.title span {
-  color: #a25de6;
-  font-style: italic;
-}
 
 .feedbackCard {
   display: flex;

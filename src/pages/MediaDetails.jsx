@@ -98,7 +98,7 @@ const MediaDetails = ({ type }) => {
     (video) => video.type === 'Trailer' && video.site === 'YouTube',
   );
   return (
-    <section className={`container ${styles.details}`}>
+    <section className={`container animeLeft ${styles.details}`}>
       <Head
         title={`${title} | The Movie Guide`}
         description={
@@ -127,7 +127,7 @@ const MediaDetails = ({ type }) => {
           />
         </div>
         <div className={styles.info}>
-          <h1>{title}</h1>
+          <h1 className="title">{title}</h1>
           <p className={styles.overview}>{details.overview}</p>
           <div className={styles.meta}>
             <span>

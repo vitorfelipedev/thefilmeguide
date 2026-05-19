@@ -59,7 +59,7 @@ const Home = () => {
     );
 
   return (
-    <section className={`container mainContainer ${styles.home}`}>
+    <section className={`container mainContainer animeLeft ${styles.home}`}>
       <Head
         title={'The Movie Guide | Popular Movies And Tv Shows'}
         description={

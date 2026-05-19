@@ -32,13 +32,13 @@ const Search = () => {
   );
 
   return (
-    <section className={`container ${styles.searchPage}`}>
+    <section className={`container animeLeft ${styles.searchPage}`}>
       <Head
         title={`Results for "${query}" | The Movie Guide`}
         description={`See all results found for the search term: ${query}`}
       />
       <header className={styles.pageHeader}>
-        <h1 className={styles.title}>
+        <h1 className="title">
           Resultados para: <span>"{query}"</span>
         </h1>
       </header>
@@ -56,7 +56,7 @@ const Search = () => {
       )}
       {filteredResults.length === 0 && !loading && !error && (
         <div className={styles.feedbackCard}>
-          <p>Poxa, não encontramos nenhum filme ou série para "{query}".</p>
+          <p>We couldn't find any movies or series for "{query}".</p>
         </div>
       )}
       {!loading && filteredResults.length > 0 && (
