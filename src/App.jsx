@@ -2,8 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Search from './pages/Search';
-import MovieDetails from './pages/MovieDetails';
-import TvDetails from './pages/TvDetails';
+import MediaDetails from './pages/MediaDetails';
 import NotFound from './pages/NotFound';
 import LayoutRoute from './LayoutRoute';
 
@@ -17,8 +16,8 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       { path: 'search', element: <Search /> },
-      { path: 'movie/:id', element: <MovieDetails /> },
-      { path: 'tv/:id', element: <TvDetails /> },
+      { path: 'movie/:id', element: <MediaDetails type="movie" /> },
+      { path: 'tv/:id', element: <MediaDetails type="tv" /> },
       { path: '*', element: <NotFound /> },
     ],
   },
