@@ -6,6 +6,7 @@ import MediaCard from '../components/MediaCard';
 import { GenresContext } from '../context/GenresContext';
 import styles from './Search.module.css';
 import MediaCardSkeleton from '../components/MediaCardSkeleton';
+import Head from '../helper/Head';
 
 const Search = () => {
   const [result, setResult] = React.useState([]);
@@ -29,6 +30,10 @@ const Search = () => {
 
   return (
     <section className={`container ${styles.searchPage}`}>
+      <Head
+        title={`Results for "${query}" | The Movie Guide`}
+        description={`See all results found for the search term: ${query}`}
+      />
       <header className={styles.pageHeader}>
         <h1 className={styles.title}>
           Resultados para: <span>"{query}"</span>

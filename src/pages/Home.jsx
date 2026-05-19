@@ -5,6 +5,7 @@ import { MOVIES_POPULAR_GET, SERIES_POPULAR_GET } from '../services/api';
 import { GenresContext } from '../context/GenresContext';
 import MediaSlide from '../components/MediaSlide';
 import MediaCardSkeleton from '../components/MediaCardSkeleton';
+import Head from '../helper/Head';
 
 const Home = () => {
   const { error, loading, request } = useFetch();
@@ -53,6 +54,12 @@ const Home = () => {
 
   return (
     <section className={`container mainContainer ${styles.home}`}>
+      <Head
+        title={'The Movie Guide | Popular Movies And Tv Shows'}
+        description={
+          'Discover the most popular and watched movies and TV series right now.'
+        }
+      />
       <MediaSlide mediaList={movies} title="Movies" genres={genres} />
       <MediaSlide mediaList={series} title="TV Show" genres={genres} />
     </section>

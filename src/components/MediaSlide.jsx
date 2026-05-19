@@ -18,7 +18,7 @@ const MediaSlide = ({ mediaList, title, genres }) => {
   return (
     <section className={styles.slideSection}>
       <div className={styles.header}>
-        <h1>{title}</h1>
+        <h1>Popular {title}</h1>
 
         <div className={styles.buttons}>
           <button onClick={slideLeft}>

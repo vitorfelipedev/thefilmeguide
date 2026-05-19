@@ -15,6 +15,7 @@ import Calendar from '../assets/calendar.svg?react';
 import Time from '../assets/time.svg?react';
 import styles from './MovieDetails.module.css';
 import noImage from '../assets/noImage.jpg';
+import Head from '../helper/Head';
 
 const MovieDetails = ({ type }) => {
   const { id } = useParams();
@@ -93,6 +94,13 @@ const MovieDetails = ({ type }) => {
   );
   return (
     <section className={`container ${styles.details}`}>
+      <Head
+        title={`${title} | The Movie Guide`}
+        description={
+          details.overview ||
+          `Check out the synopsis, trailer, and cast of ${title}`
+        }
+      />
       <div className={styles.banner}>
         {details.backdrop_path && (
           <img
